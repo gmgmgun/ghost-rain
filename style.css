@@ -1,0 +1,46 @@
+#title {
+  text-align: center;
+}
+
+#bg {
+  /* hero 한테 absolute 주려고 relative 속성 부여 */
+  position: relative;
+
+  width: 800px;
+  height: 500px;
+
+  background-image: url("./images/bg.png");
+  background-size: cover;
+
+  margin: 0 auto;
+}
+
+#hero {
+  position: absolute;
+
+  background-image: url("./images/hero.png");
+  width: 140px;
+  height: 50px;
+  right: 0;
+  bottom: 0;
+}
+
+#indi-container {
+  /* position: absolute; */
+  /* top: -50px; */
+  display: flex;
+  justify-content: space-around;
+}
+
+.indi-items1 {
+}
+
+.indi-items2 {
+  display: flex;
+}
+
+.indi-item {
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+}
