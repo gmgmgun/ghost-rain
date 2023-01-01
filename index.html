@@ -11,14 +11,21 @@
     <h1 id="title">
       <p>Ghost Rain</p>
     </h1>
-    <div id="bg">
-      <div id="indi-container">
-        <span id="stage" class="indi-items1"></span>
-        <span id="timer" class="indi-items1"></span>
-        <span id="total-kill" class="indi-items2"></span>
-        <span id="kill" class="indi-items2"></span>
+    <div class="indi-container">
+      <div class="items1">
+        <span id="stage" class="item">stage :</span>
+        <span id="timer" class="item">times left :</span>
       </div>
-      <span id="hero"> </span>
+      <div class="items2">
+        <span id="total-kill" class="item"> total stage kill :</span>
+        <span id="current-kill" class="item">current stage kill :</span>
+      </div>
     </div>
+    <!-- div 태그(block)는 크기 지정 안하면 가로가 0으로 처리 -->
+    <div id="bg">
+      <!-- span 태그(inline)는 크기 지정 안하면 가로 세로 둘다 0으로 처리 -->
+      <span id="hero" class="right"> </span>
+    </div>
+    <span id="hearts" src="./images/hearts.png"></span>
   </body>
 </html>
