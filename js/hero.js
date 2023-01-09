@@ -1,44 +1,49 @@
+const heroClassNameMap = {
+  ArrowRight: "right",
+  ArrowLeft: "left",
+  ArrowDown: "stop",
+};
+
 class Hero {
-  constructor() {
-    this.hero = document.getElementById("hero");
-    // hero.className = document.getElementById("hero").className;
-    // hero.offsetLeft = document.getElementById("hero").offsetLeft;
-    // hero.style.left = document.getElementById("hero").style.left;
+  constructor(hero) {
+    this.hero = hero;
+    this.classList = hero.classList;
+    this.style = hero.style;
+    this.movePoint = 17.5;
+    console.log("this = " + this);
+    console.log("this.hero = " + this.hero);
+  }
+
+  calPos(curPos, key) {
+    let newPos = curPos.replace("px", "");
+    let newNumPos = Number(newPos);
+    if (key == "left") {
+      newNumPos -= this.movePoint;
+    }
+    if (key == "right") {
+      newNumPos += this.movePoint;
+    }
+    let nextPos = newNumPos + "px";
+    return nextPos;
   }
 
   //용사 이동범위를 더 매끄러운 방법으로 제한해야 함.
-  move() {
-    document.addEventListener("keydown", function (e) {
-      switch (e.key) {
-        case "ArrowRight":
-          hero.className = "right"; // 오른쪽을 바라보는 이미지로 갱신.
-          console.log(this);
-          // 다음 동작 수행 시 용사가 배경의 범위 밖으로 넘어가면 범위 끝으로 고정시킴.
-          if (hero.offsetLeft + 17.5 >= 766) {
-            console.log("hero.offsetLeft = " + hero.offsetLeft);
-            hero.style.left = 766 + "px";
-            return;
-          }
-          hero.style.left = hero.offsetLeft + 17.5 + "px";
-          break;
-
-        case "ArrowLeft":
-          hero.className = "left"; // 왼쪽을 바라보는 이미지로 갱신.
-
-          // 다음 동작 수행 시 용사가 배경의 범위 밖으로 넘어가면 범위 끝으로 고정시킴.
-          if (hero.offsetLeft - 17.5 <= 0) {
-            hero.style.left = 0 + "px";
-            return;
-          }
-
-          hero.style.left = hero.offsetLeft - 17.5 + "px";
-          break;
-
-        case "ArrowDown":
-          //hero가 움직일 필요는 없음.
-          hero.className = "down"; // 정면을 바라보는 이미지로 갱신.
-          break;
+  move(key) {
+    if (key === "left") {
+      console.log(hero.style.left);
+      if (this.hero.offsetLeft - this.movePoint <= 0) {
+        this.hero.style.left = 0 + "px";
+        return;
       }
-    });
+      this.hero.style.left = this.calPos(this.hero.style.left, key);
+    }
+    if (key === "right") {
+      console.log(this.hero.style.left);
+      if (this.hero.offsetLeft + this.movePoint >= 765) {
+        this.hero.style.left = 765 + "px";
+        return;
+      }
+      this.hero.style.left = this.calPos(this.hero.style.left, key);
+    }
   }
 }
